@@ -15,12 +15,20 @@ public class RandomParameterForm {
 	private int blockSize;
 	private boolean isStatisticalIntegrity;
 	private TreeMap<String, Integer> feature;
-	
+	private String button;
+	private int strataSize;
+
 	public RandomParameterForm(HttpServletRequest request) {
-		type = Integer.parseInt(request.getParameter("randomType"));
-		groupSize = Integer.parseInt(request.getParameter("groupSize" + type));
-		blockSize = Integer.parseInt(request.getParameter("blockSize" + type));
-		
+		button = request.getParameter("saveBtn" + type);
+		if (button != null) {
+			type = Integer.parseInt(request.getParameter("randomType"));
+			groupSize = Integer.parseInt(request.getParameter("groupSize" + type));
+			if (type > 1) blockSize = Integer.parseInt(request.getParameter("blockSize" + type));
+		}		
+	}
+	
+	public boolean isPresent() {
+		return button != null;
 	}
 
 	public int getType() {
@@ -43,6 +51,10 @@ public class RandomParameterForm {
 		return feature;
 	}
 
+	public int getStrataSize() {
+		return strataSize;
+	}
+
 	public void setType(int type) {
 		this.type = type;
 	}
@@ -62,4 +74,8 @@ public class RandomParameterForm {
 	public void setFeature(TreeMap<String, Integer> feature) {
 		this.feature = feature;
 	}
+
+	public void setStrataSize(int strataSize) {
+		this.strataSize = strataSize;
+	}	
 }

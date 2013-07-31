@@ -7,6 +7,7 @@ package random;
 
 import formbean.*;
 
+@SuppressWarnings("serial")
 public class StratifiedRandomization extends Randomization {
 	BlockRandomHelper[] brHelpers;
 	boolean isStatisticalIntegrity;
@@ -14,13 +15,13 @@ public class StratifiedRandomization extends Randomization {
 	
 	public StratifiedRandomization(RandomParameterForm form) {
 		this.groupSize = form.getGroupSize();
-		brHelpers = new BlockRandomHelper[strataSize];
-		for (int i = 0; i < strataSize; i++) {
+		brHelpers = new BlockRandomHelper[form.getStrataSize()];
+		for (int i = 0; i < form.getStrataSize(); i++) {
 			brHelpers[i] = new BlockRandomHelper(groupSize);
 		}
 		
 		this.isStatisticalIntegrity = form.isStatisticalIntegrity();
-		strataCount = new int[strataSize][groupSize];
+		strataCount = new int[form.getStrataSize()][groupSize];
 	}
 	
 	@Override

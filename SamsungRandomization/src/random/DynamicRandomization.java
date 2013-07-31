@@ -7,6 +7,7 @@ package random;
 
 import formbean.*;
 
+@SuppressWarnings("serial")
 public class DynamicRandomization extends Randomization {
 	
 	public DynamicRandomization(RandomParameterForm form) {

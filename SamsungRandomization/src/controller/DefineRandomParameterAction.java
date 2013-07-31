@@ -33,10 +33,10 @@ public class DefineRandomParameterAction extends Action {
         try {
         	RandomParameterForm form = new RandomParameterForm(request);
 	        request.setAttribute("form",form);
-
-//	        if (!form.isPresent()) {
-//	            return "create-account.jsp";
-//	        }
+	        
+	        if (!form.isPresent()) {
+	            return "define-random-parameter.jsp";
+	        }
 //	
 //	        errors.addAll(form.getValidationErrors());
 //	        if (errors.size() != 0) {
@@ -60,7 +60,7 @@ public class DefineRandomParameterAction extends Action {
 	       	
 	       	randomizationDAO.writeRandomization(r);
 
-	        return "employee-confirmation.jsp";
+	        return "define-random-parameter.jsp";
 			
         } catch (Exception e) {
         	errors.add(e.getMessage());

@@ -7,6 +7,7 @@ package random;
 
 import formbean.*;
 
+@SuppressWarnings("serial")
 public class PermutedBlockRandomization extends Randomization {
 	BlockRandomHelper brHelper;
 	

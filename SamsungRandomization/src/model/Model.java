@@ -9,7 +9,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
 public class Model {
-	public static final String TEMP_PATH = "tmp\\";
+	public static final String TEMP_PATH = "D:\\";
 	
 	private RandomizationDAO randomizationDAO;
 

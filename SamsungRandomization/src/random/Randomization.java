@@ -5,11 +5,13 @@
 
 package random;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import formbean.Subject;
 
-public abstract class Randomization {
+@SuppressWarnings("serial")
+public abstract class Randomization implements Serializable{
 	int groupSize;
 	ArrayList<Subject> subjectList = new ArrayList<Subject>();
 	

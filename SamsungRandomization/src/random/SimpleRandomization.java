@@ -7,6 +7,7 @@ package random;
 
 import formbean.*;
 
+@SuppressWarnings("serial")
 public class SimpleRandomization extends Randomization {
 	public SimpleRandomization(RandomParameterForm form) {
 		this.groupSize = form.getGroupSize();
