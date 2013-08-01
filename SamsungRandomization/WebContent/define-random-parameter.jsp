@@ -163,7 +163,17 @@
 											<input name="" class="btn btn-primary" type="button" value="Add Strata" onClick="AddElement()" /> 
 										</div>
 									</div>
-									
+									<div class="control-group">
+										<label class="control-label">Is statistical integrity? </label>
+										<div class="controls">
+											<label class="radio inline">
+											  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Yes
+											</label>
+											<label class="radio inline">
+											  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> No
+											</label>
+										</div>
+									</div>
 									<div class="row-fluid">
 										<div id="strata_para" class="span10">
 											

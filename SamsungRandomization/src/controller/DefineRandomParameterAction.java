@@ -1,8 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import formbean.RandomParameterForm;
@@ -20,12 +17,10 @@ public class DefineRandomParameterAction extends Action {
 		randomizationDAO = model.getRandomizationDAO();
 	}
 	
-	@Override
 	public String getName() {
 		return "Define-Random-Parameter.do";
 	}
 
-	@Override
 	public String perform(HttpServletRequest request) {
 		List<String> errors = new ArrayList<String>();
         request.setAttribute("errors",errors);
