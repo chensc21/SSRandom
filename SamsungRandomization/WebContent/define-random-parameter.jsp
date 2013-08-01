@@ -168,6 +168,7 @@
 										<div id="strata_para" class="span10">
 											
 										</div>
+										<input type="text" id="strata_count" value="0">
 									</div>
 									
 									<div class="control-group">
@@ -202,6 +203,7 @@
 										<div id="strata_para1" class="span10">
 											
 										</div>
+										<input type="text" id="strata_count1" value="0">
 									</div>
 									
 									<div class="control-group">
