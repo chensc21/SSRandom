@@ -15,30 +15,36 @@ public class RandomParameterForm {
 	private String type;
 	private int groupSize = 2;
 	private int blockSize = 6;
-	private boolean isStatisticalIntegrity = true;
+	private boolean isImbalanceCorrected = false;
+	private String imbalanceDesc = "No";
 	private TreeMap<String, Integer> feature;
-//	private String button;
-	private int strataSize = 4;
+	private int strataSize = 6;
 	private String typeDesc = "Simple Randomization";
 	
 	public RandomParameterForm(Randomization r) {
 		this.groupSize = r.getGroupSize();
 		this.blockSize = r.getBlockSize();
-		this.isStatisticalIntegrity = r.isStatisticalIntegrity();
+		this.isImbalanceCorrected = r.isImbalanceCorrected();
 		this.typeDesc = r.getTypeDesc();
+		this.imbalanceDesc = isImbalanceCorrected ? "Yes" : "No";
 	}
+	
 	public RandomParameterForm(HttpServletRequest request) {
 		type = request.getParameter("randomType");
-//		button = request.getParameter("saveBtn-" + type);
 		if (type != null) {
 			groupSize = Integer.parseInt(request.getParameter("groupSize-" + type));
 			if (!type.equals("option1")) blockSize = Integer.parseInt(request.getParameter("blockSize-" + type));
+			if (type.equals("option3")) {
+				isImbalanceCorrected = request.getParameter("optionsRadios") == "option1";
+				imbalanceDesc = isImbalanceCorrected ? "Yes" : "No";
+			}
 		}		
 	}
 	
 	public boolean isPresent() {
 		return type != null;
 	}
+	
 	public String getType() {
 		return type;
 	}
@@ -48,8 +54,11 @@ public class RandomParameterForm {
 	public int getBlockSize() {
 		return blockSize;
 	}
-	public boolean isStatisticalIntegrity() {
-		return isStatisticalIntegrity;
+	public boolean isImbalanceCorrected() {
+		return isImbalanceCorrected;
+	}
+	public String getImbalanceDesc() {
+		return imbalanceDesc;
 	}
 	public TreeMap<String, Integer> getFeature() {
 		return feature;
@@ -69,8 +78,11 @@ public class RandomParameterForm {
 	public void setBlockSize(int blockSize) {
 		this.blockSize = blockSize;
 	}
-	public void setStatisticalIntegrity(boolean isStatisticalIntegrity) {
-		this.isStatisticalIntegrity = isStatisticalIntegrity;
+	public void setImbalanceCorrected(boolean isImbalanceCorrected) {
+		this.isImbalanceCorrected = isImbalanceCorrected;
+	}
+	public void setImbalanceDesc(String imbalanceDesc) {
+		this.imbalanceDesc = imbalanceDesc;
 	}
 	public void setFeature(TreeMap<String, Integer> feature) {
 		this.feature = feature;

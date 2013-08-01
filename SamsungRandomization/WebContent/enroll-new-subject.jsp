@@ -111,7 +111,16 @@
 										<label class="control-label" for="blockSize">${form.blockSize}</label>
 									</div>
 									<div class="control-group">
-										<label class="control-label">Strata</label>
+										<label class="control-label" for="statIntegrity">Is Imbalance Corrected?</label>
+										<label class="control-label" for="statIntegrity">${form.imbalanceDesc}</label>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Strata Count</label>
+										<label class="control-label">6</label>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Age (Young, Middle, Old)</label>
+										<label class="control-label">Gender (Male, Female)</label>
 									</div>
 							</form>
 							
@@ -147,9 +156,21 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">Strata</label>
+										<label class="control-label">Strata Id</label>
 										<div class="controls">
-											<input name="" class="btn btn-primary" type="button" value="Add Strata" onClick="AddElement1()" /> 
+											<input type="text" id="strataId"  name="strataId"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Age</label>
+										<div class="controls">
+											<input type="text" id="age"  name="age"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Gender</label>
+										<div class="controls">
+											<input type="text" id="gender"  name="gender"/>
 										</div>
 									</div>
 									<div class="control-group">
@@ -186,12 +207,16 @@
 							<table class="table table-hover">
 								<tr>
 									<th>Subject id</th>
+									<th>Age</th>
+									<th>Gender</th>
 									<th>Group</th>
 								</tr>
 								
 								<c:forEach var="subject" items="${subjectList}">
 									<tr>
 										<td>${ subject.id }</td>
+										<td>${ subject.age }</td>
+										<td>${ subject.gender }</td>
 										<td>${ subject.group }</td>
 									</tr>
 								</c:forEach>

@@ -164,7 +164,7 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">Is statistical integrity? </label>
+										<label class="control-label">Correct Imbalance? </label>
 										<div class="controls">
 											<label class="radio inline">
 											  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Yes

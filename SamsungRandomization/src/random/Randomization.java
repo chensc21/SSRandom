@@ -14,7 +14,7 @@ import formbean.Subject;
 public abstract class Randomization implements Serializable {
 	int groupSize;
 	int blockSize;
-	boolean isStatisticalIntegrity;
+	boolean isImbalanceCorrected;
 	String typeDesc = "Simple Randomization";
 	ArrayList<Subject> subjectList = new ArrayList<Subject>();
 	
@@ -28,8 +28,8 @@ public abstract class Randomization implements Serializable {
 		return blockSize;
 	}
 
-	public boolean isStatisticalIntegrity() {
-		return isStatisticalIntegrity;
+	public boolean isImbalanceCorrected() {
+		return isImbalanceCorrected;
 	}
 
 	public String getTypeDesc() {

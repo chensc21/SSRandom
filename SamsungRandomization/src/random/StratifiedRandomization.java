@@ -21,7 +21,7 @@ public class StratifiedRandomization extends Randomization {
 			brHelpers[i] = new BlockRandomHelper(groupSize);
 		}
 		
-		this.isStatisticalIntegrity = form.isStatisticalIntegrity();
+		this.isImbalanceCorrected = form.isImbalanceCorrected();
 		strataCount = new int[form.getStrataSize()][groupSize];
 	}
 	
@@ -30,7 +30,7 @@ public class StratifiedRandomization extends Randomization {
 		int index = sub.getStrata();
 		int num = 0;
 		
-		if (isStatisticalIntegrity) {
+		if (!isImbalanceCorrected) {
 			num = brHelpers[index].nextRandomValue();
 			strataCount[index][num]++;
 		} else {

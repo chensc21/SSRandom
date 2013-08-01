@@ -16,12 +16,29 @@ public class Subject implements Serializable {
 	private int group;
 	private TreeMap<String, Integer> feature;
 	private int strata;
+	private String age;
+	private String gender;
 	private String button;
 	
 	public Subject(HttpServletRequest request) {
 		button = request.getParameter("enrollBtn");
 		if (button != null) {
-			this.id = Integer.parseInt(request.getParameter("subjectId"));
+			if (request.getParameter("subjectId") != null) {
+				this.id = Integer.parseInt(request.getParameter("subjectId"));
+			} else {
+				this.id = 1;
+			}
+			
+			if (request.getParameter("strataId") != null) {
+				this.strata = Integer.parseInt(request.getParameter("strataId"));
+			} else {
+				this.strata = 0;
+			}
+			
+			this.age = request.getParameter("age");
+			this.gender = request.getParameter("gender");
+			if (this.age == null) this.age = "Young";
+			if (this.gender == null) this.gender = "Male";
 		}
 	}
 	
@@ -45,6 +62,14 @@ public class Subject implements Serializable {
 		return strata;
 	}
 
+	public String getAge() {
+		return age;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -59,5 +84,13 @@ public class Subject implements Serializable {
 
 	public void setStrata(int strata) {
 		this.strata = strata;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 }

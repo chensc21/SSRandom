@@ -42,7 +42,6 @@ public class BlockRandomHelper implements Serializable {
 			currentPosition = 0;
 		}
 		
-		System.out.println(blockList.length);
 		int num = blockList[currentBlock][currentPosition];
 		currentPosition++;
 		return num;
