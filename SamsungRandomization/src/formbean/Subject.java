@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 public class Subject implements Serializable {
 	private int id;
 	private int group;
-	private TreeMap<String, Integer> feature;
+	private TreeMap<String, String> feature;
 	private int strata;
 	private String age;
 	private String gender;
@@ -23,22 +23,26 @@ public class Subject implements Serializable {
 	public Subject(HttpServletRequest request) {
 		button = request.getParameter("enrollBtn");
 		if (button != null) {
-			if (request.getParameter("subjectId") != null) {
+			if (request.getParameter("subjectId") != null && request.getParameter("subjectId") != "") {
 				this.id = Integer.parseInt(request.getParameter("subjectId"));
 			} else {
 				this.id = 1;
 			}
 			
-			if (request.getParameter("strataId") != null) {
+			if (request.getParameter("strataId") != null && request.getParameter("strataId") != "") {
 				this.strata = Integer.parseInt(request.getParameter("strataId"));
 			} else {
 				this.strata = 0;
 			}
 			
-			this.age = request.getParameter("age");
-			this.gender = request.getParameter("gender");
-			if (this.age == null) this.age = "Young";
-			if (this.gender == null) this.gender = "Male";
+			age = request.getParameter("age");
+			gender = request.getParameter("gender");
+			if (age == null || age.equals("")) age = "Young";
+			if (gender == null || gender.equals("")) gender = "Male";
+			
+			feature = new TreeMap<String, String>();
+			feature.put("Age", age);
+			feature.put("Gender", gender);
 		}
 	}
 	
@@ -54,7 +58,7 @@ public class Subject implements Serializable {
 		return group;
 	}
 
-	public TreeMap<String, Integer> getFeature() {
+	public TreeMap<String, String> getFeature() {
 		return feature;
 	}
 
@@ -78,7 +82,7 @@ public class Subject implements Serializable {
 		this.group = group;
 	}
 
-	public void setFeature(TreeMap<String, Integer> feature) {
+	public void setFeature(TreeMap<String, String> feature) {
 		this.feature = feature;
 	}
 

@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 
 import model.Model;
 
@@ -36,19 +36,14 @@ public class Controller extends HttpServlet {
      * @return the next page (the view)
      */
     private String performTheAction(HttpServletRequest request) {
-        HttpSession session     = request.getSession(true);
         String      servletPath = request.getServletPath();
         String      action = getActionName(servletPath);
         String      urlName = request.getRequestURL().toString();
         urlName = getURLName(urlName);
         
         // start the web site
-        if (action.equals("start")) {
-        	if (session.getAttribute("isRandomDefined") != null){
-        		return "Perform-Random.do";
-            }
-            
-        	return "Define-Random-Parameter.do";
+        if (action.equals("start")) {            
+        	return "Perform-Random.do";
         }
         
 		return Action.perform(action, request);
