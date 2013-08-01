@@ -20,6 +20,7 @@ public class RandomParameterForm {
 	private TreeMap<String, Integer> feature;
 	private int strataSize = 6;
 	private String typeDesc = "Simple Randomization";
+	private String[] featureList = {"Age", "Gender"};
 	
 	public RandomParameterForm(Randomization r) {
 		this.groupSize = r.getGroupSize();
@@ -44,53 +45,76 @@ public class RandomParameterForm {
 	public boolean isPresent() {
 		return type != null;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
+
 	public int getGroupSize() {
 		return groupSize;
 	}
+
 	public int getBlockSize() {
 		return blockSize;
 	}
+
 	public boolean isImbalanceCorrected() {
 		return isImbalanceCorrected;
 	}
+
 	public String getImbalanceDesc() {
 		return imbalanceDesc;
 	}
+
 	public TreeMap<String, Integer> getFeature() {
 		return feature;
 	}
+
 	public int getStrataSize() {
 		return strataSize;
 	}
+
 	public String getTypeDesc() {
 		return typeDesc;
 	}
+
+	public String[] getFeatureList() {
+		return featureList;
+	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	public void setGroupSize(int groupSize) {
 		this.groupSize = groupSize;
 	}
+
 	public void setBlockSize(int blockSize) {
 		this.blockSize = blockSize;
 	}
+
 	public void setImbalanceCorrected(boolean isImbalanceCorrected) {
 		this.isImbalanceCorrected = isImbalanceCorrected;
 	}
+
 	public void setImbalanceDesc(String imbalanceDesc) {
 		this.imbalanceDesc = imbalanceDesc;
 	}
+
 	public void setFeature(TreeMap<String, Integer> feature) {
 		this.feature = feature;
 	}
+
 	public void setStrataSize(int strataSize) {
 		this.strataSize = strataSize;
 	}
+
 	public void setTypeDesc(String typeDesc) {
 		this.typeDesc = typeDesc;
+	}
+
+	public void setFeatureList(String[] featureList) {
+		this.featureList = featureList;
 	}
 }

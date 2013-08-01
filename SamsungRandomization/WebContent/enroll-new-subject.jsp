@@ -122,6 +122,11 @@
 										<label class="control-label">Age (Young, Middle, Old)</label>
 										<label class="control-label">Gender (Male, Female)</label>
 									</div>
+									<div class="control-group">
+										<div class="controls">
+											<a href="Define-Random-Parameter.do" class="btn" >Start a new Randomization</a>
+										</div>
+									</div>
 							</form>
 							
 						</div> <!-- end of .box-content -->
@@ -175,7 +180,7 @@
 									</div>
 									<div class="control-group">
 										<div class="controls">
-											<button type="submit" class="btn" name="enrollBtn">Enroll this subject</button>
+											<button type="submit" class="btn" name="enrollBtn" value="enrollBtn">Enroll this subject</button>
 										</div>
 									</div>
 								
