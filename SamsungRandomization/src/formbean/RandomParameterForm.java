@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import random.Randomization;
 
 public class RandomParameterForm {
-	private String type = "option1";
+	private String type;
 	private int groupSize = 2;
 	private int blockSize = 6;
 	private boolean isStatisticalIntegrity = true;
 	private TreeMap<String, Integer> feature;
-	private String button;
+//	private String button;
 	private int strataSize = 4;
 	private String typeDesc = "Simple Randomization";
 	
@@ -28,16 +28,16 @@ public class RandomParameterForm {
 		this.typeDesc = r.getTypeDesc();
 	}
 	public RandomParameterForm(HttpServletRequest request) {
-		button = request.getParameter("saveBtn-" + type);
-		if (button != null) {
-			type = request.getParameter("randomType");
+		type = request.getParameter("randomType");
+//		button = request.getParameter("saveBtn-" + type);
+		if (type != null) {
 			groupSize = Integer.parseInt(request.getParameter("groupSize-" + type));
 			if (!type.equals("option1")) blockSize = Integer.parseInt(request.getParameter("blockSize-" + type));
 		}		
 	}
 	
 	public boolean isPresent() {
-		return button != null;
+		return type != null;
 	}
 	public String getType() {
 		return type;

@@ -50,7 +50,7 @@ public class PerformRandom extends Action {
 	        if (!sub.isPresent()) {
 	            return "enroll-new-subject.jsp";
 	        }
-//	
+	        
 //	        errors.addAll(form.getValidationErrors());
 //	        if (errors.size() != 0) {
 //	            return "create-account.jsp";
@@ -61,7 +61,7 @@ public class PerformRandom extends Action {
 	        return "Perform-Random.do";
 			
         } catch (Exception e) {
-        	errors.add(e.getMessage());
+        	System.out.println(e.getMessage());
         	return "error.jsp";
         }
         

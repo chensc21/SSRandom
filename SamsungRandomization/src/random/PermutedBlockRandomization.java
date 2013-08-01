@@ -13,8 +13,9 @@ public class PermutedBlockRandomization extends Randomization {
 	
 	public PermutedBlockRandomization(RandomParameterForm form) {
 		this.groupSize = form.getGroupSize();
+		this.blockSize = form.getBlockSize();
 		this.typeDesc = "Permuted Block Randomization";
-		brHelper = new BlockRandomHelper(groupSize);
+		brHelper = new BlockRandomHelper(groupSize, blockSize);
 	}
 	
 	@Override

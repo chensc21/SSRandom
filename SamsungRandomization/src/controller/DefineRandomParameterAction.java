@@ -37,6 +37,7 @@ public class DefineRandomParameterAction extends Action {
 	        if (!form.isPresent()) {
 	            return "define-random-parameter.jsp";
 	        }
+	        
 //	
 //	        errors.addAll(form.getValidationErrors());
 //	        if (errors.size() != 0) {
@@ -58,7 +59,7 @@ public class DefineRandomParameterAction extends Action {
 	        return "Perform-Random.do";
 			
         } catch (Exception e) {
-        	errors.add(e.getMessage());
+        	System.out.println(e.getMessage());
         	return "error.jsp";
         }
         
