@@ -17,7 +17,7 @@ public class Controller extends HttpServlet {
         Model model = new Model(getServletConfig());
 
         Action.add(new DefineRandomParameterAction(model));
-        
+        Action.add(new PerformRandom(model));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,7 +45,7 @@ public class Controller extends HttpServlet {
         // start the web site
         if (action.equals("start")) {
         	if (session.getAttribute("isRandomDefined") != null){
-        		return "view-account.do";
+        		return "Perform-Random.do";
             }
             
         	return "Define-Random-Parameter.do";

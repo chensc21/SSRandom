@@ -7,7 +7,7 @@
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-		<title>EDC</title>
+		<title>Randomization</title>
 		<meta name="description" content="This is a page template for reference" />
 		<meta name="author" content="Team Samsung SCTS" />
 		

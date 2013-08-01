@@ -11,7 +11,7 @@ import formbean.*;
 public class DynamicRandomization extends Randomization {
 	
 	public DynamicRandomization(RandomParameterForm form) {
-		
+		this.typeDesc = "Dynamic Randomization";
 	}
 
 	@Override

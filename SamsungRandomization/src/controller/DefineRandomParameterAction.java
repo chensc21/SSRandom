@@ -44,23 +44,18 @@ public class DefineRandomParameterAction extends Action {
 //	        }
 	        
 	        Randomization r;
-	        switch (form.getType()) {
-	        	case 1:
-	        		r = new PermutedBlockRandomization(form);
-	        		break;
-	        	case 2:
-	        		r = new StratifiedRandomization(form);
-	        		break;
-	        	case 3:
-	        		r = new DynamicRandomization(form);
-	        		break;
-	        	default:
-	        		r = new SimpleRandomization(form);
+	        if (form.getType().equals("option2")) {
+	        	r = new PermutedBlockRandomization(form);
+	        } else if (form.getType().equals("option3")) {
+	        	r = new StratifiedRandomization(form);
+	        } else if (form.getType().equals("option4")) {
+	        	r = new DynamicRandomization(form);
+	        } else {
+	        	r = new SimpleRandomization(form);
 	        }
 	       	
 	       	randomizationDAO.writeRandomization(r);
-
-	        return "define-random-parameter.jsp";
+	        return "Perform-Random.do";
 			
         } catch (Exception e) {
         	errors.add(e.getMessage());

@@ -13,11 +13,15 @@ public class PermutedBlockRandomization extends Randomization {
 	
 	public PermutedBlockRandomization(RandomParameterForm form) {
 		this.groupSize = form.getGroupSize();
+		this.typeDesc = "Permuted Block Randomization";
 		brHelper = new BlockRandomHelper(groupSize);
 	}
 	
 	@Override
 	public int getRandomGroup(Subject sub) {
-		return brHelper.nextRandomValue();
+		int num = brHelper.nextRandomValue();
+		sub.setGroup(num);
+		subjectList.add(sub);
+		return num;
 	}
 }

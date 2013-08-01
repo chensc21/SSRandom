@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,7 +10,7 @@
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-		<title>EDC</title>
+		<title>Randomization</title>
 		<meta name="description" content="This is a page template for reference" />
 		<meta name="author" content="Team Samsung SCTS" />
 		
@@ -96,12 +99,16 @@
 						<div class="box-content" id="random-area">
 							<form class="form-horizontal">
 									<div class="control-group">
-										<label class="control-label" for="inputGrp1">Number of Group</label>
-										<label class="control-label" for="inputGrp1">5</label>
+										<label class="control-label" for="randomType">Randomization Type</label>
+										<label class="control-label" for="randomType">${form.typeDesc}</label>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="inputGrp">Number of Group</label>
+										<label class="control-label" for="inputGrp">${form.groupSize}</label>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="blockSize">Block Size</label>
-										<label class="control-label" for="blockSize">8</label>
+										<label class="control-label" for="blockSize">${form.blockSize}</label>
 									</div>
 									<div class="control-group">
 										<label class="control-label">Strata</label>
@@ -134,9 +141,9 @@
 							<form class="form-horizontal">
 								
 									<div class="control-group">
-										<label class="control-label" for="inputGrp1">Subject Id</label>
+										<label class="control-label" for="subjectId">Subject Id</label>
 										<div class="controls">
-											<input type="text" id="inputGrp2"  name="groupSize3"/>
+											<input type="text" id="subjectId"  name="subjectId"/>
 										</div>
 									</div>
 									<div class="control-group">
@@ -181,10 +188,14 @@
 									<th>Subject id</th>
 									<th>Group</th>
 								</tr>
-								<tr>
-									<td>abc</td>
-									<td>1</td>
-								</tr>
+								
+								<c:forEach var="subject" items="${subjectList}">
+									<tr>
+										<td>${ subject.id }</td>
+										<td>${ subject.group }</td>
+									</tr>
+								</c:forEach>
+								
 							</table>
 							
 						</div> <!-- end of .box-content -->

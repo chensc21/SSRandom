@@ -31,26 +31,34 @@ public class PerformRandom extends Action {
 
 	@Override
 	public String perform(HttpServletRequest request) {
+		Randomization r = randomizationDAO.readRandomization();
+		if (r == null) {
+			return "Define-Random-Parameter.do";
+		}
+		
+		RandomParameterForm form = new RandomParameterForm(r);
+		request.setAttribute("form", form);
+		request.setAttribute("subjectList", r.getSubjectList());
+		
 		List<String> errors = new ArrayList<String>();
         request.setAttribute("errors",errors);
         
         try {
         	Subject sub = new Subject(request);
-	        request.setAttribute("form", sub);
-
-//	        if (!form.isPresent()) {
-//	            return "create-account.jsp";
-//	        }
+	        request.setAttribute("sub", sub);
+	        
+	        if (!sub.isPresent()) {
+	            return "enroll-new-subject.jsp";
+	        }
 //	
 //	        errors.addAll(form.getValidationErrors());
 //	        if (errors.size() != 0) {
 //	            return "create-account.jsp";
 //	        }
 	        
-	        Randomization r = randomizationDAO.readRandomization();
 	        r.getRandomGroup(sub);
-
-	        return "employee-confirmation.jsp";
+	        randomizationDAO.writeRandomization(r);
+	        return "Perform-Random.do";
 			
         } catch (Exception e) {
         	errors.add(e.getMessage());

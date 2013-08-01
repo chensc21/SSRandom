@@ -5,19 +5,28 @@
 
 package formbean;
 
+import java.io.Serializable;
 import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class Subject {
+@SuppressWarnings("serial")
+public class Subject implements Serializable {
 	private int id;
 	private int group;
 	private TreeMap<String, Integer> feature;
 	private int strata;
+	private String button;
 	
 	public Subject(HttpServletRequest request) {
-		this.id = id;
-		this.feature = feature;
+		button = request.getParameter("enrollBtn");
+		if (button != null) {
+			this.id = Integer.parseInt(request.getParameter("subjectId"));
+		}
+	}
+	
+	public boolean isPresent() {
+		return button != null;
 	}
 
 	public int getId() {

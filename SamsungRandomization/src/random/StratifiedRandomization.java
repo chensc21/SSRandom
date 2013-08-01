@@ -10,11 +10,12 @@ import formbean.*;
 @SuppressWarnings("serial")
 public class StratifiedRandomization extends Randomization {
 	BlockRandomHelper[] brHelpers;
-	boolean isStatisticalIntegrity;
 	int[][] strataCount;
 	
 	public StratifiedRandomization(RandomParameterForm form) {
 		this.groupSize = form.getGroupSize();
+		this.typeDesc = "Stratified Randomization";
+		
 		brHelpers = new BlockRandomHelper[form.getStrataSize()];
 		for (int i = 0; i < form.getStrataSize(); i++) {
 			brHelpers[i] = new BlockRandomHelper(groupSize);
@@ -45,6 +46,8 @@ public class StratifiedRandomization extends Randomization {
 			}
 		}
 		
+		sub.setGroup(num);
+		subjectList.add(sub);
 		return num;
 	}
 }
