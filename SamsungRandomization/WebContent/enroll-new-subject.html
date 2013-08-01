@@ -85,7 +85,7 @@
 							<h2 class="box-title-text">
 								<i class="icon-info-sign"></i>
 								<span class="break"></span>
-								Set Randomization Parameters
+								Defined Randomization Parameters
 							</h2>
 
 							<div class="box-title-btn">
@@ -95,21 +95,91 @@
 									
 						<div class="box-content" id="random-area">
 							<form class="form-horizontal">
-								<div class="control-group">
-									<label class="control-label" for="selectMe"><span class="strong">Randomization Type</span> </label>
-									<div class="controls">
-										<select id="selectMe" name="randomType">
-										  <option value="0">Simple</option>
-										  <option value="1">Permuted Block</option>
-										  <option value="2">Stratified Block</option>
-										  <option value="3">Dynamic</option>
-										</select>
-									</div>
-								</div>
-								
-								<div id="option4" class="group">
 									<div class="control-group">
-										 <label class="control-label" for="inputGrp1">Number of Group</label>
+										<label class="control-label" for="inputGrp1">Number of Group</label>
+										<label class="control-label" for="inputGrp1">5</label>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="blockSize">Block Size</label>
+										<label class="control-label" for="blockSize">8</label>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Strata</label>
+									</div>
+							</form>
+							
+						</div> <!-- end of .box-content -->
+					</div>  <!-- end ofx-->
+								
+				</div> <!-- .row-fluid -->
+			</div>
+
+			<div class="container-fluid sortable">
+				<div class="row-fluid">
+					<div class="span12 boxes">
+							
+						<div class="box-title">
+							<h2 class="box-title-text">
+								<i class="icon-info-sign"></i>
+								<span class="break"></span>
+								Enter Subject Information
+							</h2>
+
+							<div class="box-title-btn">
+								<a href="#" class="btn-minimize nav-tooltip" data-toggle="tooltip" data-placement="bottom" title="Show / Hide"><i class="icon-chevron-up"></i></a>
+							</div>
+						</div>
+									
+						<div class="box-content" id="random-area">
+							<form class="form-horizontal">
+								
+									<div class="control-group">
+										<label class="control-label" for="inputGrp1">Subject Id</label>
+										<div class="controls">
+											<input type="text" id="inputGrp2"  name="groupSize3"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Strata</label>
+										<div class="controls">
+											<input name="" class="btn btn-primary" type="button" value="Add Strata" onClick="AddElement1()" /> 
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls">
+											<button type="submit" class="btn" name="enrollBtn">Enroll this subject</button>
+										</div>
+									</div>
+								
+							</form>
+							
+						</div> <!-- end of .box-content -->
+					</div>  <!-- end ofx-->
+								
+				</div> <!-- .row-fluid -->
+			</div>
+
+			<div class="container-fluid sortable">
+				<div class="row-fluid">
+					<div class="span12 boxes">
+							
+						<div class="box-title">
+							<h2 class="box-title-text">
+								<i class="icon-info-sign"></i>
+								<span class="break"></span>
+								List of enrolled subjects
+							</h2>
+
+							<div class="box-title-btn">
+								<a href="#" class="btn-minimize nav-tooltip" data-toggle="tooltip" data-placement="bottom" title="Show / Hide"><i class="icon-chevron-up"></i></a>
+							</div>
+						</div>
+									
+						<div class="box-content" id="random-area">
+							<form class="form-horizontal">
+								
+									<div class="control-group">
+										<label class="control-label" for="inputGrp1">Number of Group</label>
 										<div class="controls">
 											<input type="text" id="inputGrp2"  name="groupSize3"/>
 										</div>
@@ -132,13 +202,6 @@
 											
 										</div>
 									</div>
-									
-									<div class="control-group">
-										<div class="controls">
-											<button type="submit" class="btn" name="saveBtn3">Save Parameters</button>
-										</div>
-									</div>
-								</div>
 								
 							</form>
 							
@@ -147,6 +210,7 @@
 								
 				</div> <!-- .row-fluid -->
 			</div>
+			
 		</div>
 	 	
 	 	

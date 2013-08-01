@@ -1,12 +1,13 @@
-package formbean;
-import java.util.TreeMap;
-
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @author Shoucong Chen
  * Jul 10, 2013
  */
+
+package formbean;
+
+import java.util.TreeMap;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class Subject {
 	private int id;

@@ -99,10 +99,10 @@
 									<label class="control-label" for="selectMe"><span class="strong">Randomization Type</span> </label>
 									<div class="controls">
 										<select id="selectMe" name="randomType">
-										  <option value="0">Simple</option>
-										  <option value="1">Permuted Block</option>
-										  <option value="2">Stratified Block</option>
-										  <option value="3">Dynamic</option>
+										  <option value="option1">Simple</option>
+										  <option value="option2">Permuted Block</option>
+										  <option value="option3">Stratified Block</option>
+										  <option value="option4">Dynamic</option>
 										</select>
 									</div>
 								</div>
@@ -112,12 +112,12 @@
 									<div class="control-group">
 										<label class="control-label" for="inputGrp">Number of Group</label>
 										<div class="controls">
-											<input type="text" id="inputGrp" name="groupSize0"/>
+											<input type="text" id="inputGrp" name="groupSize-option1"/>
 										</div>
 									</div>
 									<div class="control-group">
 										<div class="controls">
-											<button type="submit" class="btn" name="saveBtn0">Save Parameters</button>
+											<button type="submit" class="btn" name="saveBtn-option1">Save Parameters</button>
 										</div>
 									</div>
 								</div>
@@ -127,18 +127,18 @@
 									<div class="control-group">
 										<label class="control-label" for="inputGrp1">Number of Group</label>
 										<div class="controls">
-											<input type="text" id="inputGrp1" name="groupSize1"/>
+											<input type="text" id="inputGrp1" name="groupSize-option2"/>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="blockSize">Block Size</label>
 										<div class="controls">
-											<input type="text" id="blockSize" name="blockSize1"/>
+											<input type="text" id="blockSize" name="blockSize-option2"/>
 										</div>
 									</div>
 									<div class="control-group">
 										<div class="controls">
-											<button type="submit" class="btn" name="saveBtn1">Save Parameters</button>
+											<button type="submit" class="btn" name="saveBtn-option2">Save Parameters</button>
 										</div>
 									</div>
 								</div>
@@ -148,13 +148,13 @@
 									<div class="control-group">
 										 <label class="control-label" for="inputGrp1">Number of Group</label>
 										<div class="controls">
-											<input type="text" id="inputGrp2" name="groupSize2"/>
+											<input type="text" id="inputGrp2" name="groupSize-option3"/>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="blockSize">Block Size</label>
 										<div class="controls">
-											<input type="text" id="blockSize2" name="blockSize2"/>
+											<input type="text" id="blockSize2" name="blockSize-option3"/>
 										</div>
 									</div>
 									<div class="control-group">
@@ -172,7 +172,7 @@
 									
 									<div class="control-group">
 										<div class="controls">
-											<button type="submit" class="btn" name="saveBtn2">Save Parameters</button>
+											<button type="submit" class="btn" name="saveBtn-option3">Save Parameters</button>
 										</div>
 									</div>
 	
@@ -182,13 +182,13 @@
 									<div class="control-group">
 										 <label class="control-label" for="inputGrp1">Number of Group</label>
 										<div class="controls">
-											<input type="text" id="inputGrp2"  name="groupSize3"/>
+											<input type="text" id="inputGrp2"  name="groupSize-option4"/>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="blockSize">Block Size</label>
 										<div class="controls">
-											<input type="text" id="blockSize2" name="blockSize3"/>
+											<input type="text" id="blockSize2" name="blockSize-option4"/>
 										</div>
 									</div>
 									<div class="control-group">
@@ -206,7 +206,7 @@
 									
 									<div class="control-group">
 										<div class="controls">
-											<button type="submit" class="btn" name="saveBtn3">Save Parameters</button>
+											<button type="submit" class="btn" name="saveBtn-option4">Save Parameters</button>
 										</div>
 									</div>
 								</div>
