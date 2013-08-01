@@ -1,16 +1,18 @@
-package random;
-import java.util.ArrayList;
-
 /**
  * @author Shoucong Chen
  * Jul 11, 2013
  */
 
-public class BlockRandomHelper {
+package random;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+@SuppressWarnings("serial")
+public class BlockRandomHelper implements Serializable {
 	int groupSize;
 	int blockSize;
 	
-	ArrayList<ArrayList<Integer>> blockList;
+	int[][] blockList;
 	int currentBlock;
 	int currentPosition;
 	
@@ -40,21 +42,30 @@ public class BlockRandomHelper {
 			currentPosition = 0;
 		}
 		
-		int num = blockList.get(currentBlock).get(currentPosition);
+		System.out.println(blockList.length);
+		int num = blockList[currentBlock][currentPosition];
 		currentPosition++;
 		return num;
 	}
 	
 	public void nextBlock() {
-		currentBlock = (int) (Math.random() * blockList.size());
+		currentBlock = (int) (Math.random() * blockList.length);
 	}
 	
-	private ArrayList<ArrayList<Integer>> generateBlockList(int groupSize, int blockSize) {
+	private int[][] generateBlockList(int groupSize, int blockSize) {		
 		ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
 		int[] block = new int[blockSize];
 		int[] groupCount = new int[groupSize];
 		recursion(list, block, groupCount, 0);
-		return list;
+		
+		int[][] ans = new int[list.size()][list.get(0).size()];
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = 0; j < list.get(i).size(); j++) {
+				ans[i][j] = list.get(i).get(j);
+			}
+		}
+		
+		return ans;
 	}
 	
 	private void recursion(ArrayList<ArrayList<Integer>> list, int[] block, int[] groupCount, int now) {
@@ -68,7 +79,7 @@ public class BlockRandomHelper {
 		}
 		
 		for (int i = 0; i < groupCount.length; i++) {
-			if (groupCount[i] + 1 < (block.length / groupCount.length)) {
+			if (groupCount[i] < (block.length / groupCount.length)) {
 				block[now] = i;
 				groupCount[i]++;
 				recursion(list, block, groupCount, now + 1);
