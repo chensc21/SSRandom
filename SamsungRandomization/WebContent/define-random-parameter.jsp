@@ -112,7 +112,7 @@
 									<div class="control-group">
 										<label class="control-label" for="inputGrp">Number of Group</label>
 										<div class="controls">
-											<input type="text" id="inputGrp" name="groupSize-option1"/>
+											<input type="text" id="inputGrp" class="grpnum" name="groupSize-option1"/>
 										</div>
 									</div>
 									<div class="control-group">
@@ -127,7 +127,7 @@
 									<div class="control-group">
 										<label class="control-label" for="inputGrp1">Number of Group</label>
 										<div class="controls">
-											<input type="text" id="inputGrp1" name="groupSize-option2"/>
+											<input type="text" id="inputGrp1" class="grpnum" name="groupSize-option2"/>
 										</div>
 									</div>
 									<div class="control-group">
@@ -148,7 +148,7 @@
 									<div class="control-group">
 										 <label class="control-label" for="inputGrp1">Number of Group</label>
 										<div class="controls">
-											<input type="text" id="inputGrp2" name="groupSize-option3"/>
+											<input type="text" id="inputGrp2" class="grpnum" name="groupSize-option3"/>
 										</div>
 									</div>
 									<div class="control-group">
@@ -193,7 +193,7 @@
 									<div class="control-group">
 										 <label class="control-label" for="inputGrp1">Number of Group</label>
 										<div class="controls">
-											<input type="text" id="inputGrp2"  name="groupSize-option4"/>
+											<input type="text" id="inputGrp2" class="grpnum"  name="groupSize-option4"/>
 										</div>
 									</div>
 									<div class="control-group">

@@ -4,7 +4,17 @@ $(document).ready(function () {
     $('#selectMe').change(function () {
         $('.group').hide();
         $('#'+$(this).val()).show();
-    })
+    });
+    
+    $('.grpnum').change(function(){
+    	var $target = $(this).parent();
+        $target.append( "<p>Input Group Size for each Group</p>" );
+        var num = $(this).val();
+        for (var i=0; i<num; i++)
+        {
+             $target.append( "Group " +i+  "<input type=\"text\" class=\"grpnuminput\" name=\"grpnum" +i+ "\">" ); 
+        }
+    }); 
 });
 
 
@@ -85,3 +95,4 @@ $(document).ready(function () {
     function delElement(mytype){     
         document.getElementById("input11").removeNode(true);
     }     
+    
