@@ -14,6 +14,7 @@ public class StratifiedRandomization extends Randomization {
 	
 	public StratifiedRandomization(RandomParameterForm form) {
 		this.groupSize = form.getGroupSize();
+		this.blockSize = form.getBlockSize();
 		this.typeDesc = "Stratified Randomization";
 		
 		brHelpers = new BlockRandomHelper[form.getStrataSize()];

@@ -20,6 +20,13 @@ public class Subject implements Serializable {
 	private String gender;
 	private String button;
 	
+	public Subject() {
+		this.id = 1;
+		this.strata = 0;
+		this.age = "Young";
+		this.gender = "Male";
+	}
+	
 	public Subject(HttpServletRequest request) {
 		button = request.getParameter("enrollBtn");
 		if (button != null) {

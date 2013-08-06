@@ -197,12 +197,6 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="blockSize">Block Size</label>
-										<div class="controls">
-											<input type="text" id="blockSize2" name="blockSize-option4"/>
-										</div>
-									</div>
-									<div class="control-group">
 										<label class="control-label">Strata</label>
 										<div class="controls">
 											<input name="" class="btn btn-primary" type="button" value="Add Strata" onClick="AddElement1()" /> 

@@ -17,6 +17,7 @@ public class DynamicRandomization extends Randomization {
 	
 	public DynamicRandomization(RandomParameterForm form) {
 		this.groupSize = form.getGroupSize();
+		this.typeDesc = "Dynamic Randomization";
 		this.featureList = form.getFeatureList();
 		
 		featureCount = new ArrayList<TreeMap<String, Integer>>();
@@ -30,11 +31,8 @@ public class DynamicRandomization extends Randomization {
 	public int getRandomGroup(Subject sub) {
 		int sumA = 0, sumB = 0;
 		for (int i = 0; i < featureList.length; i++) {
-			System.out.println(sub.getFeature().get(featureList[i]));
 			int t1 = featureCount.get(0).containsKey(sub.getFeature().get(featureList[i])) ? featureCount.get(0).get(sub.getFeature().get(featureList[i])) : 0;
-			System.out.println("t1 " + t1);
 			int t2 = featureCount.get(1).containsKey(sub.getFeature().get(featureList[i])) ? featureCount.get(1).get(sub.getFeature().get(featureList[i])) : 0;
-			System.out.println("t2 " + t2);
 			sumA += Math.abs(t1 + 1 - t2);
 			sumB += Math.abs(t2 + 1 - t1);
 		}

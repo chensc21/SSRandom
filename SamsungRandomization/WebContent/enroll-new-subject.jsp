@@ -106,22 +106,42 @@
 										<label class="control-label" for="inputGrp">Number of Group</label>
 										<label class="control-label" for="inputGrp">${form.groupSize}</label>
 									</div>
-									<div class="control-group">
-										<label class="control-label" for="blockSize">Block Size</label>
-										<label class="control-label" for="blockSize">${form.blockSize}</label>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="statIntegrity">Is Imbalance Corrected?</label>
-										<label class="control-label" for="statIntegrity">${form.imbalanceDesc}</label>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Strata Count</label>
-										<label class="control-label">6</label>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Age (Young, Middle, Old)</label>
-										<label class="control-label">Gender (Male, Female)</label>
-									</div>
+									
+									<c:choose>
+	  							   		<c:when test="${form.typeDesc == 'Permuted Block Randomization'}">
+	  							   			<div class="control-group">
+												<label class="control-label" for="blockSize">Block Size</label>
+												<label class="control-label" for="blockSize">${form.blockSize}</label>
+											</div>
+	  							   		</c:when>
+	  							   		<c:when test="${form.typeDesc == 'Stratified Randomization'}">
+	  							   			<div class="control-group">
+												<label class="control-label" for="blockSize">Block Size</label>
+												<label class="control-label" for="blockSize">${form.blockSize}</label>
+											</div>
+											<div class="control-group">
+												<label class="control-label" for="statIntegrity">Is Imbalance Corrected?</label>
+												<label class="control-label" for="statIntegrity">${form.imbalanceDesc}</label>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Strata Count</label>
+												<label class="control-label">6</label>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Age (Young, Middle, Old)</label>
+												<label class="control-label">Gender (Male, Female)</label>
+											</div>
+	  							   		</c:when>
+	  							   		<c:when test="${ form.typeDesc == 'Dynamic Randomization'}">
+	  							   			<div class="control-group">
+												<label class="control-label">Age (Young, Middle, Old)</label>
+												<label class="control-label">Gender (Male, Female)</label>
+											</div>
+	  							   		</c:when>
+  							   		</c:choose>
+									
+									
+									
 									<div class="control-group">
 										<div class="controls">
 											<a href="Define-Random-Parameter.do" class="btn" >Start a new Randomization</a>
@@ -157,27 +177,36 @@
 									<div class="control-group">
 										<label class="control-label" for="subjectId">Subject Id</label>
 										<div class="controls">
-											<input type="text" id="subjectId"  name="subjectId"/>
+											<input type="text" id="subjectId"  name="subjectId" value="${subListLen}"/>
 										</div>
 									</div>
-									<div class="control-group">
-										<label class="control-label">Strata Id</label>
-										<div class="controls">
-											<input type="text" id="strataId"  name="strataId"/>
+									
+									<c:choose>
+									<c:when test="${form.typeDesc == 'Stratified Randomization'}">
+										<div class="control-group">
+											<label class="control-label">Strata Id</label>
+											<div class="controls">
+												<input type="text" id="strataId"  name="strataId" value="${ lastSub.strata }"/>
+											</div>
 										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Age</label>
-										<div class="controls">
-											<input type="text" id="age"  name="age"/>
+									</c:when>
+									
+									<c:when test="${ form.typeDesc == 'Dynamic Randomization'}">
+										<div class="control-group">
+											<label class="control-label">Age</label>
+											<div class="controls">
+												<input type="text" id="age"  name="age" value="${lastSub.age}"/>
+											</div>
 										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Gender</label>
-										<div class="controls">
-											<input type="text" id="gender"  name="gender"/>
+										<div class="control-group">
+											<label class="control-label">Gender</label>
+											<div class="controls">
+												<input type="text" id="gender"  name="gender" value="${lastSub.gender}"/>
+											</div>
 										</div>
-									</div>
+									</c:when>
+									</c:choose>
+									
 									<div class="control-group">
 										<div class="controls">
 											<button type="submit" class="btn" name="enrollBtn" value="enrollBtn">Enroll this subject</button>
@@ -212,16 +241,31 @@
 							<table class="table table-hover">
 								<tr>
 									<th>Subject id</th>
-									<th>Age</th>
-									<th>Gender</th>
+									<c:choose>
+										<c:when test="${form.typeDesc == 'Stratified Randomization'}">
+											<th>Strata Id</th>
+										</c:when>
+										<c:when test="${ form.typeDesc == 'Dynamic Randomization'}">
+											<th>Age</th>
+											<th>Gender</th>
+										</c:when>
+									</c:choose>
+									
 									<th>Group</th>
 								</tr>
 								
 								<c:forEach var="subject" items="${subjectList}">
 									<tr>
 										<td>${ subject.id }</td>
-										<td>${ subject.age }</td>
-										<td>${ subject.gender }</td>
+										<c:choose>
+											<c:when test="${form.typeDesc == 'Stratified Randomization'}">
+												<td>${ subject.strata }</td>
+											</c:when>
+											<c:when test="${ form.typeDesc == 'Dynamic Randomization'}">
+												<td>${ subject.age }</td>
+												<td>${ subject.gender }</td>
+											</c:when>
+										</c:choose>
 										<td>${ subject.group }</td>
 									</tr>
 								</c:forEach>

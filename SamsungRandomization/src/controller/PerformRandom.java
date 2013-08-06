@@ -37,8 +37,15 @@ public class PerformRandom extends Action {
 		}
 		
 		RandomParameterForm form = new RandomParameterForm(r);
+		List<Subject> subList = r.getSubjectList();
+		int subListLen = subList.size();
+		Subject lastSub = new Subject();
+		if (subListLen > 0) lastSub = subList.get(subListLen - 1);
+		
 		request.setAttribute("form", form);
-		request.setAttribute("subjectList", r.getSubjectList());
+		request.setAttribute("subjectList", subList);
+		request.setAttribute("subListLen", subListLen);
+		request.setAttribute("lastSub", lastSub);
 		
 		List<String> errors = new ArrayList<String>();
         request.setAttribute("errors",errors);
@@ -57,7 +64,7 @@ public class PerformRandom extends Action {
 //	        }
 	        
 	        r.getRandomGroup(sub);
-	        randomizationDAO.writeRandomization(r);
+	        randomizationDAO.writeRandomization(r);	        
 	        return "Perform-Random.do";
 			
         } catch (Exception e) {

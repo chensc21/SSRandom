@@ -34,12 +34,12 @@ public class RandomParameterForm {
 		type = request.getParameter("randomType");
 		if (type != null) {
 			groupSize = Integer.parseInt(request.getParameter("groupSize-" + type));
-			if (!type.equals("option1")) blockSize = Integer.parseInt(request.getParameter("blockSize-" + type));
+			if (type.equals("option2") || type.equals("option3")) blockSize = Integer.parseInt(request.getParameter("blockSize-" + type));
 			if (type.equals("option3")) {
 				isImbalanceCorrected = request.getParameter("optionsRadios") == "option1";
 				imbalanceDesc = isImbalanceCorrected ? "Yes" : "No";
 			}
-		}		
+		}
 	}
 	
 	public boolean isPresent() {
