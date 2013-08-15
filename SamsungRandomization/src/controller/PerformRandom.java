@@ -36,6 +36,7 @@ public class PerformRandom extends Action {
 			return "Define-Random-Parameter.do";
 		}
 		
+//		System.out.println("Enter Perform Random");
 		RandomParameterForm form = new RandomParameterForm(r);
 		List<Subject> subList = r.getSubjectList();
 		int subListLen = subList.size();
@@ -54,23 +55,35 @@ public class PerformRandom extends Action {
         	Subject sub = new Subject(request);
 	        request.setAttribute("sub", sub);
 	        
+	        // Check whether page is displayed
 	        if (!sub.isPresent()) {
 	            return "enroll-new-subject.jsp";
 	        }
 	        
-//	        errors.addAll(form.getValidationErrors());
-//	        if (errors.size() != 0) {
-//	            return "create-account.jsp";
-//	        }
+	        // Check whether subject id is duplicated.
+	        for (Subject curSub : r.getSubjectList()) {
+	        	if (sub.getId().equals(curSub.getId())) {
+	        		errors.add("Duplicated Subject Id.");
+	        	}
+	        }
 	        
+	        // Check whether it is possible to enroll a new subject.
+	        if (r.getAvailGroup() <= 0) {
+	        	errors.add("All groups are full.  It is impossible to enroll any new subjects");	        	
+	        }
+	        
+	        if (errors.size() > 0) return "enroll-new-subject.jsp";
+	        
+	        
+	        // Perform randomization
 	        r.getRandomGroup(sub);
-	        randomizationDAO.writeRandomization(r);	        
+	        randomizationDAO.writeRandomization(r);
+	        
 	        return "Perform-Random.do";
 			
         } catch (Exception e) {
         	System.out.println(e.getMessage());
         	return "error.jsp";
-        }
-        
+        }        
 	}
 }

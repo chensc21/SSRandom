@@ -13,13 +13,14 @@ public class StratifiedRandomization extends Randomization {
 	int[][] strataCount;
 	
 	public StratifiedRandomization(RandomParameterForm form) {
-		this.groupSize = form.getGroupSize();
+		super(form);
+		
 		this.blockSize = form.getBlockSize();
 		this.typeDesc = "Stratified Randomization";
 		
 		brHelpers = new BlockRandomHelper[form.getStrataSize()];
 		for (int i = 0; i < form.getStrataSize(); i++) {
-			brHelpers[i] = new BlockRandomHelper(groupSize);
+			brHelpers[i] = new BlockRandomHelper(groupSize, blockSize);
 		}
 		
 		this.isImbalanceCorrected = form.isImbalanceCorrected();
@@ -28,11 +29,16 @@ public class StratifiedRandomization extends Randomization {
 	
 	@Override
 	public int getRandomGroup(Subject sub) {
+		if (availGroup <= 0) return -1;
+		
 		int index = sub.getStrata();
 		int num = 0;
 		
 		if (!isImbalanceCorrected) {
 			num = brHelpers[index].nextRandomValue();
+			while (groupCount[num] == groupMax[num]) {
+				num = brHelpers[index].nextRandomValue();
+			}
 			strataCount[index][num]++;
 		} else {
 			int min = Integer.MAX_VALUE;
@@ -48,7 +54,10 @@ public class StratifiedRandomization extends Randomization {
 		}
 		
 		sub.setGroup(num);
+		groupCount[num]++;
+		if (groupCount[num] == groupMax[num]) availGroup--;
 		subjectList.add(sub);
+		
 		return num;
 	}
 }

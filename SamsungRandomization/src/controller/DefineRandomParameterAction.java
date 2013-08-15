@@ -30,6 +30,7 @@ public class DefineRandomParameterAction extends Action {
         
         try {
         	RandomParameterForm form = new RandomParameterForm(request);
+//        	System.out.println("Parse form successfully");
 	        request.setAttribute("form",form);
 	        
 	        if (!form.isPresent()) {

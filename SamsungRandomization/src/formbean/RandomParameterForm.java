@@ -13,18 +13,30 @@ import random.Randomization;
 
 public class RandomParameterForm {
 	private String type;
+	
 	private int groupSize = 2;
+	private int availGroup = 2;
+	private int[] groupMax;
+	private int[] groupCount;
 	private int blockSize = 6;
+	
 	private boolean isImbalanceCorrected = false;
 	private String imbalanceDesc = "No";
+	
 	private TreeMap<String, Integer> feature;
 	private int strataSize = 6;
+	
 	private String typeDesc = "Simple Randomization";
+	
 	private String[] featureList = {"Age", "Gender"};
 	
 	public RandomParameterForm(Randomization r) {
 		this.groupSize = r.getGroupSize();
+		this.availGroup = r.getAvailGroup();
 		this.blockSize = r.getBlockSize();
+		this.groupMax = r.getGroupMax();
+		this.groupCount = r.getGroupCount();
+		
 		this.isImbalanceCorrected = r.isImbalanceCorrected();
 		this.typeDesc = r.getTypeDesc();
 		this.imbalanceDesc = isImbalanceCorrected ? "Yes" : "No";
@@ -34,6 +46,13 @@ public class RandomParameterForm {
 		type = request.getParameter("randomType");
 		if (type != null) {
 			groupSize = Integer.parseInt(request.getParameter("groupSize-" + type));
+			this.availGroup = groupSize;
+			this.groupCount = new int[groupSize];
+			this.groupMax = new int[groupSize];
+			for (int i = 0; i < groupSize; i++) {
+				groupMax[i] = Integer.parseInt(request.getParameter("grpnum" + i));
+			}
+			
 			if (type.equals("option2") || type.equals("option3")) blockSize = Integer.parseInt(request.getParameter("blockSize-" + type));
 			if (type.equals("option3")) {
 				isImbalanceCorrected = request.getParameter("optionsRadios") == "option1";
@@ -52,6 +71,18 @@ public class RandomParameterForm {
 
 	public int getGroupSize() {
 		return groupSize;
+	}
+
+	public int getAvailGroup() {
+		return availGroup;
+	}
+
+	public int[] getGroupMax() {
+		return groupMax;
+	}
+
+	public int[] getGroupCount() {
+		return groupCount;
 	}
 
 	public int getBlockSize() {
@@ -88,6 +119,18 @@ public class RandomParameterForm {
 
 	public void setGroupSize(int groupSize) {
 		this.groupSize = groupSize;
+	}
+
+	public void setAvailGroup(int availGroup) {
+		this.availGroup = availGroup;
+	}
+
+	public void setGroupMax(int[] groupMax) {
+		this.groupMax = groupMax;
+	}
+
+	public void setGroupCount(int[] groupCount) {
+		this.groupCount = groupCount;
 	}
 
 	public void setBlockSize(int blockSize) {

@@ -106,6 +106,13 @@
 										<label class="control-label" for="inputGrp">Number of Group</label>
 										<label class="control-label" for="inputGrp">${form.groupSize}</label>
 									</div>
+									<div class="control-group">
+										<label class="control-label" for="grpMax">Group Upper Limit</label>
+										<c:forEach var="group" items="${form.groupMax}">
+											<label class="control-label" for="grpMax">${group}</label>
+										</c:forEach>
+									</div>
+									
 									
 									<c:choose>
 	  							   		<c:when test="${form.typeDesc == 'Permuted Block Randomization'}">
@@ -212,6 +219,15 @@
 											<button type="submit" class="btn" name="enrollBtn" value="enrollBtn">Enroll this subject</button>
 										</div>
 									</div>
+									
+									<c:forEach var="error" items="${errors}">
+										<div class="control-group">
+											<div class="controls">
+												<label class="control-label" for="grpMax">${error}</label>
+											</div>
+										</div>
+									</c:forEach>
+									
 								
 							</form>
 							

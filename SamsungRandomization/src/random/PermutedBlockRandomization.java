@@ -12,7 +12,8 @@ public class PermutedBlockRandomization extends Randomization {
 	BlockRandomHelper brHelper;
 	
 	public PermutedBlockRandomization(RandomParameterForm form) {
-		this.groupSize = form.getGroupSize();
+		super(form);
+		
 		this.blockSize = form.getBlockSize();
 		this.typeDesc = "Permuted Block Randomization";
 		brHelper = new BlockRandomHelper(groupSize, blockSize);
@@ -20,9 +21,18 @@ public class PermutedBlockRandomization extends Randomization {
 	
 	@Override
 	public int getRandomGroup(Subject sub) {
+		if (availGroup <= 0) return -1;
+		
 		int num = brHelper.nextRandomValue();
+		while (groupCount[num] == groupMax[num]) {
+			num = brHelper.nextRandomValue();
+		}
+		
 		sub.setGroup(num);
+		groupCount[num]++;
+		if (groupCount[num] == groupMax[num]) availGroup--;
 		subjectList.add(sub);
+		
 		return num;
 	}
 }

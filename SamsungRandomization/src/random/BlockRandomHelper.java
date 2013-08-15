@@ -25,6 +25,7 @@ public class BlockRandomHelper implements Serializable {
 		this.blockSize = num;
 		
 		this.blockList = generateBlockList(groupSize, blockSize);
+		this.currentBlock = (int) (Math.random() * blockList.length);
 		this.currentPosition = 0;
 	}
 	
@@ -33,6 +34,7 @@ public class BlockRandomHelper implements Serializable {
 		this.blockSize = blockSize;
 		
 		this.blockList = generateBlockList(groupSize, blockSize);
+		this.currentBlock = (int) (Math.random() * blockList.length);
 		this.currentPosition = 0;
 	}
 	

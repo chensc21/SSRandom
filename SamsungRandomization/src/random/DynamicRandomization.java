@@ -13,10 +13,11 @@ import java.util.TreeMap;
 @SuppressWarnings("serial")
 public class DynamicRandomization extends Randomization {
 	String[] featureList;
-	ArrayList<TreeMap<String, Integer>> featureCount;
+	ArrayList<TreeMap<String, Integer>> featureCount; // Count each feature in each group
 	
 	public DynamicRandomization(RandomParameterForm form) {
-		this.groupSize = form.getGroupSize();
+		super(form);
+		
 		this.typeDesc = "Dynamic Randomization";
 		this.featureList = form.getFeatureList();
 		
@@ -29,35 +30,56 @@ public class DynamicRandomization extends Randomization {
 
 	@Override
 	public int getRandomGroup(Subject sub) {
-		int sumA = 0, sumB = 0;
-		for (int i = 0; i < featureList.length; i++) {
-			int t1 = featureCount.get(0).containsKey(sub.getFeature().get(featureList[i])) ? featureCount.get(0).get(sub.getFeature().get(featureList[i])) : 0;
-			int t2 = featureCount.get(1).containsKey(sub.getFeature().get(featureList[i])) ? featureCount.get(1).get(sub.getFeature().get(featureList[i])) : 0;
-			sumA += Math.abs(t1 + 1 - t2);
-			sumB += Math.abs(t2 + 1 - t1);
-		}
+		if (availGroup <= 0) return -1;
 		
-		int num;
-		if (sumA > sumB) {
-			num = 1;
-		} else if (sumB > sumA) {
-			num = 0;
-		} else {
-			if (Math.random() < 0.5) num = 0;
-			else num = 1;
-		}
+		int i, j;
 		
-		for (int i = 0; i < featureList.length; i++) {
-			if (featureCount.get(num).containsKey(sub.getFeature().get(featureList[i]))) {
-				featureCount.get(num).put(sub.getFeature().get(featureList[i]), featureCount.get(num).get(sub.getFeature().get(featureList[i])) + 1);
-			} else {
-				featureCount.get(num).put(sub.getFeature().get(featureList[i]), 1);
+		// Count sum of specific features
+		int[] sum = new int[groupSize];
+		for (i = 0; i < featureList.length; i++) { // Loop in feature names, like Age, Gender...
+			String currentFeature = sub.getFeature().get(featureList[i]);
+			for (j = 0; j < sum.length; j++) { // Loop in groups
+				if (featureCount.get(j).containsKey(currentFeature)) sum[j] += featureCount.get(j).get(currentFeature);
 			}
 		}
 		
-		sub.setGroup(num);
+		// Exclude groups that are full already
+		for (i = 0; i < sum.length; i++) {
+			if (groupCount[i] == groupMax[i]) sum[i] = Integer.MAX_VALUE;
+		}
+		
+		// Get the list of minimum sum index
+		ArrayList<Integer> minList = new ArrayList<Integer>();
+		minList.add(0);
+		for (i = 1; i < sum.length; i++) {
+			if (sum[i] < sum[minList.get(0)]) {
+				minList = new ArrayList<Integer>();
+				minList.add(i);
+			} else if (sum[i] == sum[minList.get(0)]) {
+				minList.add(i);
+			}
+		}
+		
+		// Choose one index randomly from the minimum list
+		int minIdx = minList.get(randomGenerator.nextInt(minList.size()));
+		
+		// Add feature count
+		for (i = 0; i < featureList.length; i++) {
+			String currentFeature = sub.getFeature().get(featureList[i]);
+			if (featureCount.get(minIdx).containsKey(currentFeature)) {
+				featureCount.get(minIdx).put(currentFeature, featureCount.get(minIdx).get(currentFeature) + 1);
+			} else {
+				featureCount.get(minIdx).put(currentFeature, 1);
+			}
+		}
+		
+		// Assign group.
+		sub.setGroup(minIdx);
+		groupCount[minIdx]++;
+		if (groupCount[minIdx] == groupMax[minIdx]) availGroup--;
 		subjectList.add(sub);
-		return num;
+		
+		return minIdx;
 	}
 
 }

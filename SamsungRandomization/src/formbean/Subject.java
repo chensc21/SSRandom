@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @SuppressWarnings("serial")
 public class Subject implements Serializable {
-	private int id;
+	private String id;
 	private int group;
 	private TreeMap<String, String> feature;
 	private int strata;
@@ -21,7 +21,7 @@ public class Subject implements Serializable {
 	private String button;
 	
 	public Subject() {
-		this.id = 1;
+		this.id = "1";
 		this.strata = 0;
 		this.age = "Young";
 		this.gender = "Male";
@@ -31,9 +31,9 @@ public class Subject implements Serializable {
 		button = request.getParameter("enrollBtn");
 		if (button != null) {
 			if (request.getParameter("subjectId") != null && request.getParameter("subjectId") != "") {
-				this.id = Integer.parseInt(request.getParameter("subjectId"));
+				this.id = request.getParameter("subjectId");
 			} else {
-				this.id = 1;
+				this.id = "1";
 			}
 			
 			if (request.getParameter("strataId") != null && request.getParameter("strataId") != "") {
@@ -57,7 +57,7 @@ public class Subject implements Serializable {
 		return button != null;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -81,7 +81,7 @@ public class Subject implements Serializable {
 		return gender;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
